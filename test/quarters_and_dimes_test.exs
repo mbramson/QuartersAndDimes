@@ -4,12 +4,30 @@ defmodule QuartersAndDimesTest do
   use ExUnit.Case
   doctest QuartersAndDimes
 
-  test "the truth" do
-    assert 1 + 1 == 2
-  end
-
   test "that step returns a list" do
     assert is_list step []
+  end
+
+  # step_single_point tests
+
+  test "that step_single_point alters middle point correctly for [1, 2, 5]" do
+    assert step_single_point([1, 2, 5], 1) == [1, 3, 5]
+  end
+
+  test "that step_single_point alters middle point correctly for [0, 5, 6]" do
+    assert step_single_point([0, 5, 6], 1) == [0, 3, 6]
+  end
+
+  test "that step_single_point alterst third point correctlry for [1, 2, 7, 8]" do
+    assert step_single_point([1, 2, 7, 8], 2) == [1, 2, 5, 8]
+  end
+
+  test "that step_single_point alters first point with wrapping at beginning" do
+    assert step_single_point([10, 20, 30], 0) == [205, 20, 30]
+  end
+
+  test "that step_single_point alters last point with wrapping at end" do
+    assert step_single_point([10, 20, 30], 2) == [10, 20, 195]
   end
 
   # reposition tests
@@ -24,6 +42,10 @@ defmodule QuartersAndDimesTest do
 
   test "that reposition returns a point between 359 and 1" do
     assert reposition(359, 1) == 0
+  end
+
+  test "that reposition returns a decimal point between 10 and 15" do
+    assert reposition(10, 15) == 12.5
   end
 
   # float_mod tests
@@ -42,6 +64,15 @@ defmodule QuartersAndDimesTest do
 
   test "that circle_mod returns number between 0 and 360 when negative" do
     assert circle_mod(-90) == 270
+  end
+
+  # replcae_at tests
+  test " that replace_at replaces first value" do
+    assert replace_at([1,3], 0, 0, 2) == [2, 3]
+  end
+
+  test "that replace_at replaces second value" do
+    assert replace_at([1, 2, 4], 1, 0, 3) == [1, 3, 4]
   end
 
 end
