@@ -8,6 +8,10 @@ defmodule QuartersAndDimesTest do
     assert is_list step []
   end
 
+  test "that step returns same list when all are equidistant" do
+    assert step([0, 90, 180, 270]) == [0, 90, 180, 270]
+  end
+
   # step_single_point tests
 
   test "that step_single_point alters middle point correctly for [1, 2, 5]" do
