@@ -1,20 +1,12 @@
 # QuartersAndDimes
 
-**TODO: Add description**
+This project exists to solve one specific problem and do so in elixir.
 
-## Installation
+Given an arbitrary number of points on a circle which are randomly (or in some
+deterministic fashion) distributed, how long does it take performing steps of
+the following process to converge to a uniform spacing within some bound?
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
+Each step loops through every point and repositions it such that it is
+equidistant from the two closest points (along the surface of the circle).
 
-  1. Add quarters_and_dimes to your list of dependencies in `mix.exs`:
-
-        def deps do
-          [{:quarters_and_dimes, "~> 0.0.1"}]
-        end
-
-  2. Ensure quarters_and_dimes is started before your application:
-
-        def application do
-          [applications: [:quarters_and_dimes]]
-        end
-
+For now, we're assuming that there are at least 3 points.
