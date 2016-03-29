@@ -7,11 +7,7 @@ defmodule QuartersAndDimes do
     if first < last do
       (first + last) / 2
     else
-      n = reposition(first, last + 360)
-      if n >= 360 do
-        n = n - 360
-      end
-      n
+      circle_mod(reposition(first, last + 360))
     end
   end
 
