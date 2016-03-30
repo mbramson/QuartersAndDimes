@@ -12,6 +12,14 @@ defmodule QuartersAndDimesTest do
     assert step([0, 90, 180, 270]) == [0, 90, 180, 270]
   end
 
+  test "that step iterates through 3 item list once" do
+    assert step([0, 0, 0]) == [180, 270, 45]
+  end
+
+  test "that step iterations through 4 item list once" do
+    assert step([0, 0, 0, 0]) == [180, 270, 315, 67.5]
+  end
+
   # step_single_point tests
 
   test "that step_single_point alters middle point correctly for [1, 2, 5]" do
@@ -70,13 +78,17 @@ defmodule QuartersAndDimesTest do
     assert circle_mod(-90) == 270
   end
 
-  # replcae_at tests
+  # replace_at tests
   test " that replace_at replaces first value" do
     assert replace_at([1,3], 0, 0, 2) == [2, 3]
   end
 
   test "that replace_at replaces second value" do
     assert replace_at([1, 2, 4], 1, 0, 3) == [1, 3, 4]
+  end
+
+  test "that replace_at can replace last value" do
+    assert replace_at([1,2], 1, 0, 3) == [1, 3]
   end
 
 end

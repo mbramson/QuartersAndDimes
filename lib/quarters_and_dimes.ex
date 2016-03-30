@@ -1,6 +1,17 @@
 defmodule QuartersAndDimes do
   def step(points) do
-    []
+    cond do
+      Enum.count(points) < 2 -> points
+      true -> step(points, 0, Enum.count(points))
+    end
+  end
+
+  def step(points, index, length) when index == length do
+    points
+  end
+
+  def step(points, index, length) do
+    step(step_single_point(points, index), index + 1, length)
   end
 
   def step_single_point(points, index) do
