@@ -4,6 +4,8 @@ defmodule QuartersAndDimesTest do
   use ExUnit.Case
   doctest QuartersAndDimes
 
+  # step tests
+
   test "that step returns a list" do
     assert is_list step []
   end
@@ -18,6 +20,20 @@ defmodule QuartersAndDimesTest do
 
   test "that step iterations through 4 item list once" do
     assert step([0, 0, 0, 0]) == [180, 270, 315, 67.5]
+  end
+
+  test "that step makes equidistant 4 items for [45, 90, 180, 270]" do
+    assert step([45, 90, 180, 270]) == [0, 90, 180, 270]
+  end
+
+  test "that two sequential steps gives correct list for 4-identity points" do
+    assert step([0, 90, 180, 270]) |> step == [0, 90, 180, 270]
+  end
+
+  # equidistant? tests
+
+  test "that equidistant? returns true for 4-identity" do
+    assert equidistant?([0, 90, 180, 270], 1)
   end
 
   # step_single_point tests
