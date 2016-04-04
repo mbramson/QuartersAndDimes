@@ -28,13 +28,9 @@ defmodule QuartersAndDimes do
     end
   end
 
-  def circle_mod(n) do
-    cond do
-      n < 0 -> circle_mod(n + 360)
-      n >= 360 -> circle_mod(n - 360)
-      true -> n
-    end
-  end
+  def circle_mod(n) when n < 0, do: circle_mod(n + 360)
+  def circle_mod(n) when n >= 360, do: circle_mod(n - 360)
+  def circle_mod(n), do: n
 
   def replace_at(list, index, value), do: replace_at(list, index, 0, value)
 
