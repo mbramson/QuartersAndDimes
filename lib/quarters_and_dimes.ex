@@ -17,7 +17,7 @@ defmodule QuartersAndDimes do
     new_value = reposition(Enum.at(points, index - 1),
                            Enum.at(points, rem(index + 1,
                                                Enum.count(points))))
-    replace_at(points, index, 0, new_value)
+    replace_at(points, index, new_value)
   end
 
   def reposition(first, last) do
@@ -36,15 +36,14 @@ defmodule QuartersAndDimes do
     end
   end
 
-  def replace_at(list, index, position, replace_value) do
-    if position == index do
-      [old | rest] = list
-      [replace_value] ++ rest
-    else
-      [first | rest] = list
-      [first] ++ replace_at(rest, index, position + 1, replace_value)
-    end
+  def replace_at(list, index, value), do: replace_at(list, index, 0, value)
 
+  def replace_at([_|rest], index, position, value) when position == index do
+    [value] ++ rest
+  end
+
+  def replace_at([first | rest], index, position, value) do
+    [first] ++ replace_at(rest, index, position + 1, value)
   end
 
 end
