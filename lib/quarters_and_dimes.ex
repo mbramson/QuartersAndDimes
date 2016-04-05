@@ -1,7 +1,24 @@
 defmodule QuartersAndDimes do
 
   def equidistant?(points, tolerance) do
-    true
+    correct_distance = 360 / length(points)
+    lower = correct_distance - tolerance
+    upper = correct_distance + tolerance
+
+    equidistant?(points, 0, lower, upper)
+  end
+
+  def equidistant?(points, index, lower, upper) when length(points) == index, do: true
+
+  def equidistant?(points, index, lower, upper) do
+    first = Enum.at(points, index - 1)
+    second = Enum.at(points, index)
+    distance = circle_mod(second - first)
+    cond do
+      distance < lower -> false
+      distance > upper -> false
+      true -> equidistant?(points, index + 1, lower, upper)
+    end
   end
 
   def step(points) when length(points) < 2, do: points
