@@ -5,20 +5,18 @@ defmodule QuartersAndDimes do
     lower = correct_distance - tolerance
     upper = correct_distance + tolerance
 
-    equidistant?(points, 0, lower, upper)
+    [first|rest] = points
+    points_offset = rest ++ [first]
+
+    Enum.all?(Enum.zip(points, points_offset),
+              fn({current,next}) ->
+                spaced_within_tolerance?(current, next, lower, upper) end
+    )
   end
 
-  def equidistant?(points, index, lower, upper) when length(points) == index, do: true
-
-  def equidistant?(points, index, lower, upper) do
-    first = Enum.at(points, index - 1)
-    second = Enum.at(points, index)
-    distance = circle_mod(second - first)
-    cond do
-      distance < lower -> false
-      distance > upper -> false
-      true -> equidistant?(points, index + 1, lower, upper)
-    end
+  def spaced_within_tolerance?(current, next, lower, upper) do
+    distance = circle_mod(next - current)
+    distance >= lower and distance <= upper
   end
 
   def step(points) when length(points) < 2, do: points
