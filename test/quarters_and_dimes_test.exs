@@ -108,15 +108,15 @@ defmodule QuartersAndDimesTest do
 
   # replace_at tests
   test " that replace_at replaces first value" do
-    assert replace_at([1,3], 0, 0, 2) == [2, 3]
+    assert replace_at([1,3], 0, 2) == [2, 3]
   end
 
   test "that replace_at replaces second value" do
-    assert replace_at([1, 2, 4], 1, 0, 3) == [1, 3, 4]
+    assert replace_at([1, 2, 4], 1, 3) == [1, 3, 4]
   end
 
   test "that replace_at can replace last value" do
-    assert replace_at([1,2], 1, 0, 3) == [1, 3]
+    assert replace_at([1,2], 1, 3) == [1, 3]
   end
 
 end
