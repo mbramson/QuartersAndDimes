@@ -30,7 +30,7 @@ defmodule QuartersAndDimesTest do
     assert step([0, 90, 180, 270]) |> step == [0, 90, 180, 270]
   end
 
-  # equidistant2? tests
+  # equidistant? tests
 
   test "that equidistant? returns true for 4-identity" do
     assert equidistant?([0, 90, 180, 270], 1)

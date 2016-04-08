@@ -2,16 +2,19 @@ defmodule QuartersAndDimes do
 
   def equidistant?(points, tolerance) do
     correct_distance = 360 / length(points)
-    lower = correct_distance - tolerance
-    upper = correct_distance + tolerance
 
-    [first|rest] = points
-    points_offset = rest ++ [first]
+    _equidistant?(points ++ [List.first(points)],
+                  correct_distance - tolerance,
+                  correct_distance + tolerance)
+  end
 
-    Enum.all?(Enum.zip(points, points_offset),
-              fn({current,next}) ->
-                _spaced_within_tolerance?(current, next, lower, upper) end
-    )
+  defp _equidistant?([first| [ last | [] ] ], lower, upper) do
+    _spaced_within_tolerance?(first, last, lower, upper)
+  end
+
+  defp _equidistant?([first|points], lower, upper) do
+    _spaced_within_tolerance?(first, List.first(points), lower, upper) and
+    _equidistant?(points, lower, upper)
   end
 
   defp _spaced_within_tolerance?(current, next, lower, upper) do
