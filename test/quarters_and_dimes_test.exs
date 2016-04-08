@@ -48,6 +48,10 @@ defmodule QuartersAndDimesTest do
     assert equidistant?([0, 180], 1)
   end
 
+  test "that equidistant? returns true for equidistant points out of order" do
+    assert equidistant?([0, 180, 90, 270], 1)
+  end
+
   # step_single_point tests
 
   test "that step_single_point alters middle point correctly for [1, 2, 5]" do
