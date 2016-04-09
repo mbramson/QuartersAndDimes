@@ -70,10 +70,7 @@ defmodule QuartersAndDimes do
   """
   def replace_at(list, index, value), do: _replace_at(list, index, 0, value)
 
-  defp _replace_at([_|rest], index, position, value) when position == index do
-    [value] ++ rest
-  end
-
+  defp _replace_at([_|rest], same, same, value), do: [value] ++ rest
   defp _replace_at([first | rest], index, position, value) do
     [first] ++ _replace_at(rest, index, position + 1, value)
   end
