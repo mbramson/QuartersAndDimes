@@ -37,7 +37,7 @@ defmodule QuartersAndDimesTest do
   end
 
   test "that equidistant? returns false for non-equidistant points" do
-    assert !equidistant?([1, 2, 3], 1)
+    refute equidistant?([1, 2, 3], 1)
   end
 
   test "that equidistant? returns true within tolerance" do
