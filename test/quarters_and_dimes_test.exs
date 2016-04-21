@@ -4,6 +4,16 @@ defmodule QuartersAndDimesTest do
   use ExUnit.Case
   doctest QuartersAndDimes
 
+  # steps_until_tolerance_met tests
+
+  test "simulate returns 0 when points are already equidistant" do
+    assert steps_until_tolerance_met([0,90,180,270], 1) == 0
+  end
+
+  test "steps_until returns 1 when there is only 1 step to equidistance" do
+    assert steps_until_tolerance_met([10, 90, 180, 270], 1) == 1
+  end
+
   # step tests
 
   test "that step returns a list" do

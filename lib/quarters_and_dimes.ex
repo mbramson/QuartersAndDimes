@@ -1,5 +1,25 @@
 defmodule QuartersAndDimes do
 
+
+  def steps_until_tolerance_met(points, tolerance) do
+    if equidistant?(points, tolerance) do
+      0
+    else
+      IO.inspect(points)
+      _steps_until_tolerance_met(points, tolerance)
+    end
+  end
+
+  defp _steps_until_tolerance_met(points, tolerance) do
+    points = step(points)
+    IO.inspect(points)
+    if equidistant?(points, tolerance) do
+      1
+    else
+      1 + _steps_until_tolerance_met(points, tolerance)
+    end
+  end
+
   @doc """
   Returns true if the values (degrees) in points are equidistant within the
   tolerance parameter. It calculates the distance between each sequential point
