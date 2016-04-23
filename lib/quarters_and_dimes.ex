@@ -1,22 +1,22 @@
 defmodule QuartersAndDimes do
 
-
+  @doc """
+  Returns the number of iterations of the step procedure necessary ot bring all
+  points in the points parameter to an equidistant state within the tolerance
+  specified by the tolerance parameter.
+  """
   def steps_until_tolerance_met(points, tolerance) do
-    if equidistant?(points, tolerance) do
-      0
-    else
-      IO.inspect(points)
-      _steps_until_tolerance_met(points, tolerance)
+    case equidistant?(points, tolerance) do
+      true -> 0  # To short circuit if the points are already equidistant
+      false -> _steps_until_tolerance_met(points, tolerance)
     end
   end
 
   defp _steps_until_tolerance_met(points, tolerance) do
     points = step(points)
-    IO.inspect(points)
-    if equidistant?(points, tolerance) do
-      1
-    else
-      1 + _steps_until_tolerance_met(points, tolerance)
+    case equidistant?(points, tolerance) do
+      true -> 1
+      false -> 1 + _steps_until_tolerance_met(points, tolerance)
     end
   end
 
